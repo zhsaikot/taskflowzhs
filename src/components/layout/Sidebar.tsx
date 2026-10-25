@@ -11,6 +11,7 @@ import {
   Layers,
   PanelLeftClose,
   PanelLeftOpen,
+  UserCog,
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
@@ -22,6 +23,7 @@ export const Sidebar: React.FC = () => {
     setActiveListId,
     currentUser,
     tasks,
+    setIsProfileModalOpen,
   } = useTasks();
 
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -72,11 +74,21 @@ export const Sidebar: React.FC = () => {
           </button>
         </div>
 
-        <img
-          src={currentUser.avatar}
-          alt={currentUser.name}
-          className="w-8 h-8 rounded-full object-cover ring-2 ring-teal-500/50"
-        />
+        <button
+          type="button"
+          onClick={() => setIsProfileModalOpen(true)}
+          className="relative group cursor-pointer"
+          title="Edit Profile & DP"
+        >
+          <img
+            src={currentUser.avatar}
+            alt={currentUser.name}
+            className="w-8 h-8 rounded-full object-cover ring-2 ring-teal-500/50 group-hover:ring-teal-400 transition"
+          />
+          <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+            <UserCog className="w-3.5 h-3.5 text-teal-300" />
+          </div>
+        </button>
       </aside>
     );
   }
@@ -255,19 +267,29 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Profile & Workload Pill */}
+      {/* Bottom Profile & Workload Pill - Click to Edit */}
       <div className="p-3 border-t border-slate-200 dark:border-white/[0.06] bg-slate-50/50 dark:bg-obsidian-950/80">
-        <div className="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-white/[0.05] shadow-xs">
+        <div
+          onClick={() => setIsProfileModalOpen(true)}
+          className="group flex items-center justify-between p-2 rounded-xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-white/[0.05] hover:border-teal-500/40 shadow-xs cursor-pointer transition"
+          title="Click to edit profile & display picture"
+        >
           <div className="flex items-center gap-2.5 min-w-0">
-            <img
-              src={currentUser.avatar}
-              alt={currentUser.name}
-              className="w-8 h-8 rounded-full object-cover ring-1 ring-teal-500/40"
-            />
+            <div className="relative">
+              <img
+                src={currentUser.avatar}
+                alt={currentUser.name}
+                className="w-8 h-8 rounded-full object-cover ring-1 ring-teal-500/40 group-hover:ring-teal-400 transition"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-obsidian-900" />
+            </div>
             <div className="truncate">
-              <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
-                {currentUser.name}
-              </p>
+              <div className="flex items-center gap-1">
+                <p className="text-xs font-bold text-slate-900 dark:text-white truncate group-hover:text-teal-300 transition">
+                  {currentUser.name}
+                </p>
+                <UserCog className="w-3 h-3 text-slate-400 group-hover:text-teal-400 transition opacity-0 group-hover:opacity-100 flex-shrink-0" />
+              </div>
               <p className="text-[10px] text-slate-400 truncate">{currentUser.role}</p>
             </div>
           </div>

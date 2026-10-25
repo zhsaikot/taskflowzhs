@@ -34,6 +34,7 @@ interface TaskContextType {
   theme: 'dark' | 'light';
   isCommandPaletteOpen: boolean;
   isCreateModalOpen: boolean;
+  isProfileModalOpen: boolean;
   createModalDefaultStatus?: TaskStatus;
 
   // Navigation & UI Actions
@@ -50,6 +51,8 @@ interface TaskContextType {
   toggleTheme: () => void;
   setIsCommandPaletteOpen: (open: boolean) => void;
   setIsCreateModalOpen: (open: boolean, defaultStatus?: TaskStatus) => void;
+  setIsProfileModalOpen: (open: boolean) => void;
+  updateCurrentUser: (updates: Partial<User>) => void;
 
   // Task Mutations
   addTask: (task: Omit<Task, 'id' | 'activity' | 'comments' | 'attachments' | 'checklists' | 'subtasks'> & {
@@ -82,15 +85,31 @@ interface TaskContextType {
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 const LOCAL_STORAGE_KEY = 'taskflow_pro_tasks_v2';
+const USER_STORAGE_KEY = 'taskflow_pro_current_user_v1';
 const THEME_STORAGE_KEY = 'taskflow_pro_theme';
 
 export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState<User>(() => {
+    try {
+      const saved = localStorage.getItem(USER_STORAGE_KEY);
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error('Failed to load user', e);
+    }
+    return CURRENT_USER;
+  });
+
+  const [teamMembers, setTeamMembers] = useState<User[]>(() => {
+    return TEAM_MEMBERS.map((m) => (m.id === CURRENT_USER.id ? currentUser : m));
+  });
+
   const [tasks, setTasks] = useState<Task[]>(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY) || localStorage.getItem('taskflow_pro_tasks_v1');
       if (saved) {
         const parsed: Task[] = JSON.parse(saved);
-        // Seamlessly migrate old user ID if present
         return parsed.map((t) => ({
           ...t,
           assignees: t.assignees.map((a) => (a === 'usr_rahim' ? 'usr_ziaul' : a)),
@@ -107,8 +126,6 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [workspace] = useState<Workspace>(INITIAL_WORKSPACE);
-  const [currentUser] = useState<User>(CURRENT_USER);
-  const [teamMembers] = useState<User[]>(TEAM_MEMBERS);
 
   const [activeSpaceId, setActiveSpaceId] = useState<string>('all');
   const [activeListId, setActiveListId] = useState<string>('all');
@@ -117,6 +134,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [createModalDefaultStatus, setCreateModalDefaultStatus] = useState<TaskStatus | undefined>(undefined);
 
   const [theme, setThemeState] = useState<'dark' | 'light'>(() => {
@@ -141,6 +159,18 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error('Failed to save tasks', e);
     }
   }, [tasks]);
+
+  // Sync user to local storage
+  useEffect(() => {
+    try {
+      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(currentUser));
+      setTeamMembers((prev) =>
+        prev.map((m) => (m.id === currentUser.id ? currentUser : m))
+      );
+    } catch (e) {
+      console.error('Failed to save user', e);
+    }
+  }, [currentUser]);
 
   // Sync theme
   useEffect(() => {
@@ -169,11 +199,12 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (selectedTaskId) setSelectedTaskId(null);
         if (isCommandPaletteOpen) setIsCommandPaletteOpen(false);
         if (isCreateModalOpen) setIsCreateModalOpen(false);
+        if (isProfileModalOpen) setIsProfileModalOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedTaskId, isCommandPaletteOpen, isCreateModalOpen]);
+  }, [selectedTaskId, isCommandPaletteOpen, isCreateModalOpen, isProfileModalOpen]);
 
   const setTheme = (newTheme: 'dark' | 'light') => {
     setThemeState(newTheme);
@@ -186,6 +217,13 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const openCreateModal = (open: boolean, defaultStatus?: TaskStatus) => {
     setCreateModalDefaultStatus(defaultStatus);
     setIsCreateModalOpen(open);
+  };
+
+  const updateCurrentUser = (updates: Partial<User>) => {
+    setCurrentUser((prev) => {
+      const updated = { ...prev, ...updates };
+      return updated;
+    });
   };
 
   const selectedTask = tasks.find((t) => t.id === selectedTaskId) || null;
@@ -303,7 +341,6 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
           return { ...st, ...updates };
         });
 
-        // Check if this update changed status to done
         if (updates.status === 'done') {
           triggerDoneConfetti();
         }
@@ -460,6 +497,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
         theme,
         isCommandPaletteOpen,
         isCreateModalOpen,
+        isProfileModalOpen,
         createModalDefaultStatus,
 
         setActiveSpaceId,
@@ -475,6 +513,8 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
         toggleTheme,
         setIsCommandPaletteOpen,
         setIsCreateModalOpen: openCreateModal,
+        setIsProfileModalOpen,
+        updateCurrentUser,
 
         addTask,
         updateTask,

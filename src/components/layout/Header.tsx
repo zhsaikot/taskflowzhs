@@ -27,6 +27,8 @@ export const Header: React.FC = () => {
     toggleTheme,
     setIsCommandPaletteOpen,
     setIsCreateModalOpen,
+    setIsProfileModalOpen,
+    currentUser,
     tasks,
     resetToDemoData,
   } = useTasks();
@@ -60,7 +62,7 @@ export const Header: React.FC = () => {
           </kbd>
         </div>
 
-        {/* Right Buttons: Reset, Theme Toggle, + New Task */}
+        {/* Right Buttons: Reset, Theme Toggle, Profile DP, + New Task */}
         <div className="flex items-center gap-2.5">
           <button
             type="button"
@@ -84,6 +86,23 @@ export const Header: React.FC = () => {
             ) : (
               <Moon className="w-4 h-4 text-teal-500" />
             )}
+          </button>
+
+          {/* User Profile DP Button */}
+          <button
+            type="button"
+            onClick={() => setIsProfileModalOpen(true)}
+            className="flex items-center gap-2 p-1 pr-2.5 rounded-xl border border-slate-200 dark:border-obsidian-700 hover:border-teal-500/50 hover:bg-slate-100 dark:hover:bg-obsidian-800 transition cursor-pointer"
+            title="Edit Profile & Display Picture"
+          >
+            <img
+              src={currentUser.avatar}
+              alt={currentUser.name}
+              className="w-6 h-6 rounded-full object-cover ring-1 ring-teal-500/50"
+            />
+            <span className="hidden md:inline-block text-xs font-semibold text-slate-700 dark:text-slate-200 truncate max-w-[110px]">
+              {currentUser.name}
+            </span>
           </button>
 
           {/* + New Task Primary CTA with Deep Teal-Emerald Gradient */}

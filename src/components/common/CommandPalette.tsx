@@ -15,6 +15,7 @@ import {
   RefreshCw,
   AlertCircle,
   X,
+  UserCog,
 } from 'lucide-react';
 
 export const CommandPalette: React.FC = () => {
@@ -25,6 +26,7 @@ export const CommandPalette: React.FC = () => {
     setSelectedTaskId,
     setActiveView,
     setIsCreateModalOpen,
+    setIsProfileModalOpen,
     theme,
     toggleTheme,
     setFilterState,
@@ -55,6 +57,12 @@ export const CommandPalette: React.FC = () => {
     : tasks.slice(0, 5);
 
   const navigationActions = [
+    {
+      id: 'act-edit-profile',
+      label: 'Edit User Profile & Display Picture (DP)',
+      icon: UserCog,
+      action: () => setIsProfileModalOpen(true),
+    },
     {
       id: 'nav-kanban',
       label: 'Switch to Kanban Board View',

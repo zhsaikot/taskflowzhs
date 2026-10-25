@@ -11,6 +11,7 @@ import { TaskDetailDrawer } from './components/tasks/TaskDetailDrawer';
 import { CreateTaskModal } from './components/tasks/CreateTaskModal';
 import { CommandPalette } from './components/common/CommandPalette';
 import { BulkActionBar } from './components/common/BulkActionBar';
+import { EditProfileModal } from './components/common/EditProfileModal';
 
 const MainAppContent: React.FC = () => {
   const { tasks, activeSpaceId, activeListId, activeView, filterState, currentUser } = useTasks();
@@ -36,7 +37,7 @@ const MainAppContent: React.FC = () => {
         if (t.status === 'done' || t.status === 'closed') return false;
         if (!t.expiryDate) return false;
         const diffMs = new Date(t.expiryDate).getTime() - now;
-        return diffMs < 86400000; // < 24h or past due
+        return diffMs < 86400000;
       });
     } else if (filterState.quickFilter === 'high_priority') {
       result = result.filter((t) => t.priority === 'urgent' || t.priority === 'high');
@@ -84,6 +85,9 @@ const MainAppContent: React.FC = () => {
 
       {/* Create Task Modal */}
       <CreateTaskModal />
+
+      {/* Edit Profile & DP Modal */}
+      <EditProfileModal />
 
       {/* Bulk Action Floating Glass Bar */}
       <BulkActionBar />
