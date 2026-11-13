@@ -15,41 +15,41 @@ export const STATUS_CONFIG: Record<
   not_started: {
     label: 'Not Started',
     color: '#64748B',
-    bgClass: 'bg-slate-500/10 dark:bg-slate-500/20',
-    textClass: 'text-slate-600 dark:text-slate-400',
-    borderClass: 'border-slate-400/30 dark:border-slate-600/30',
+    bgClass: 'bg-slate-100 dark:bg-slate-500/20',
+    textClass: 'text-slate-700 dark:text-slate-400 font-medium',
+    borderClass: 'border-slate-300 dark:border-slate-600/30',
     dotClass: 'bg-[#64748B]',
   },
   planning: {
     label: 'Planning',
     color: '#0284C7', // Dark Ocean Blue
-    bgClass: 'bg-sky-500/10 dark:bg-sky-500/20',
-    textClass: 'text-sky-600 dark:text-sky-400',
-    borderClass: 'border-sky-400/30 dark:border-sky-500/30',
+    bgClass: 'bg-sky-50 dark:bg-sky-500/20',
+    textClass: 'text-sky-700 dark:text-sky-400 font-medium',
+    borderClass: 'border-sky-300 dark:border-sky-500/30',
     dotClass: 'bg-[#0284C7]',
   },
   in_progress: {
     label: 'In Progress',
     color: '#0D9488', // Dark Teal
-    bgClass: 'bg-teal-500/10 dark:bg-teal-500/20',
-    textClass: 'text-teal-600 dark:text-teal-400',
-    borderClass: 'border-teal-400/30 dark:border-teal-500/30',
+    bgClass: 'bg-teal-50 dark:bg-teal-500/20',
+    textClass: 'text-teal-700 dark:text-teal-400 font-semibold',
+    borderClass: 'border-teal-300 dark:border-teal-500/30',
     dotClass: 'bg-[#0D9488]',
   },
   done: {
     label: 'Done',
     color: '#059669', // Deep Emerald Green
-    bgClass: 'bg-emerald-500/10 dark:bg-emerald-500/20',
-    textClass: 'text-emerald-600 dark:text-emerald-400',
-    borderClass: 'border-emerald-400/30 dark:border-emerald-500/30',
+    bgClass: 'bg-emerald-50 dark:bg-emerald-500/20',
+    textClass: 'text-emerald-700 dark:text-emerald-400 font-semibold',
+    borderClass: 'border-emerald-300 dark:border-emerald-500/30',
     dotClass: 'bg-[#059669]',
   },
   closed: {
     label: 'Closed',
     color: '#475569',
-    bgClass: 'bg-slate-800/10 dark:bg-slate-800/30',
+    bgClass: 'bg-slate-100 dark:bg-slate-800/30',
     textClass: 'text-slate-500 dark:text-slate-500 line-through',
-    borderClass: 'border-slate-700/20 dark:border-slate-700/30',
+    borderClass: 'border-slate-300 dark:border-slate-700/30',
     dotClass: 'bg-[#475569]',
   },
 };
@@ -67,30 +67,30 @@ export const PRIORITY_CONFIG: Record<
   urgent: {
     label: 'Urgent',
     color: '#EF4444',
-    textColor: 'text-red-500 dark:text-red-400',
-    bgClass: 'bg-red-500/10 dark:bg-red-500/20',
-    borderClass: 'border-red-400/30',
+    textColor: 'text-rose-700 dark:text-red-400 font-semibold',
+    bgClass: 'bg-rose-50 dark:bg-red-500/20',
+    borderClass: 'border-rose-300 dark:border-red-400/30',
   },
   high: {
     label: 'High',
     color: '#F97316',
-    textColor: 'text-orange-500 dark:text-orange-400',
-    bgClass: 'bg-orange-500/10 dark:bg-orange-500/20',
-    borderClass: 'border-orange-400/30',
+    textColor: 'text-orange-700 dark:text-orange-400 font-semibold',
+    bgClass: 'bg-amber-50 dark:bg-orange-500/20',
+    borderClass: 'border-amber-300 dark:border-orange-400/30',
   },
   normal: {
     label: 'Normal',
     color: '#0284C7',
-    textColor: 'text-sky-500 dark:text-sky-400',
-    bgClass: 'bg-sky-500/10 dark:bg-sky-500/20',
-    borderClass: 'border-sky-400/30',
+    textColor: 'text-sky-700 dark:text-sky-400 font-medium',
+    bgClass: 'bg-sky-50 dark:bg-sky-500/20',
+    borderClass: 'border-sky-300 dark:border-sky-400/30',
   },
   low: {
     label: 'Low',
-    color: '#94A3B8',
-    textColor: 'text-slate-400 dark:text-slate-400',
-    bgClass: 'bg-slate-500/10 dark:bg-slate-500/20',
-    borderClass: 'border-slate-400/20',
+    color: '#64748B',
+    textColor: 'text-slate-600 dark:text-slate-400 font-medium',
+    bgClass: 'bg-slate-100 dark:bg-slate-500/20',
+    borderClass: 'border-slate-300 dark:border-slate-400/20',
   },
 };
 
@@ -123,7 +123,7 @@ export function getExpiryStatus(expiryDateStr?: string, status?: TaskStatus): Ex
       isDueSoon: false,
       text: fullDate,
       fullDate,
-      badgeClass: 'text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800/40',
+      badgeClass: 'text-slate-500 dark:text-slate-500 bg-slate-100 dark:bg-slate-800/40 border border-slate-200 dark:border-white/5',
     };
   }
 
@@ -134,7 +134,7 @@ export function getExpiryStatus(expiryDateStr?: string, status?: TaskStatus): Ex
       isDueSoon: false,
       text: daysAgo === 1 ? 'Overdue (Yesterday)' : `Overdue (${daysAgo}d ago)`,
       fullDate,
-      badgeClass: 'text-red-500 dark:text-red-400 bg-red-500/15 border border-red-500/30 badge-overdue-pulse font-semibold',
+      badgeClass: 'text-rose-700 dark:text-red-400 bg-rose-50 dark:bg-red-500/15 border border-rose-300 dark:border-red-500/30 badge-overdue-pulse font-semibold',
     };
   }
 
@@ -145,7 +145,7 @@ export function getExpiryStatus(expiryDateStr?: string, status?: TaskStatus): Ex
       isDueSoon: true,
       text: `Due Soon (${hoursRemaining}h)`,
       fullDate,
-      badgeClass: 'text-amber-500 dark:text-amber-400 bg-amber-500/15 border border-amber-500/30 font-medium',
+      badgeClass: 'text-amber-800 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/15 border border-amber-300 dark:border-amber-500/30 font-semibold',
     };
   }
 
@@ -154,7 +154,7 @@ export function getExpiryStatus(expiryDateStr?: string, status?: TaskStatus): Ex
     isDueSoon: false,
     text: fullDate,
     fullDate,
-    badgeClass: 'text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50',
+    badgeClass: 'text-slate-700 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/50 font-medium',
   };
 }
 

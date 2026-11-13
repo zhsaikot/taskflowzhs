@@ -58,28 +58,28 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
       {/* Executive Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total & Active */}
-        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Total Tasks</span>
-            <div className="p-2 rounded-xl bg-teal-500/10 text-teal-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Total Tasks</span>
+            <div className="p-2 rounded-xl bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-transparent">
               <Layers className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-bold font-mono text-slate-900 dark:text-white">
             {totalTasks}
           </div>
-          <div className="text-xs text-slate-400 mt-2 flex items-center gap-1.5">
-            <span className="text-teal-400 font-semibold">{inProgressTasks} In Progress</span>
+          <div className="text-xs text-slate-600 dark:text-slate-400 mt-2 flex items-center gap-1.5 font-medium">
+            <span className="text-teal-700 dark:text-teal-400 font-bold">{inProgressTasks} In Progress</span>
             <span>·</span>
             <span>{planningTasks} Planning</span>
           </div>
         </div>
 
         {/* Completion Rate */}
-        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Completion Rate</span>
-            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Completion Rate</span>
+            <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-transparent">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
@@ -87,7 +87,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
             <span className="text-3xl font-bold font-mono text-slate-900 dark:text-white">
               {completionRate}%
             </span>
-            <span className="text-xs text-slate-400 font-mono">
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono font-medium">
               ({completedTasks}/{totalTasks} done)
             </span>
           </div>
@@ -100,10 +100,10 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
         </div>
 
         {/* Overdue Alerts */}
-        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Overdue Alerts</span>
-            <div className="p-2 rounded-xl bg-red-500/10 text-red-500">
+        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Overdue Alerts</span>
+            <div className="p-2 rounded-xl bg-rose-50 dark:bg-red-500/10 text-rose-700 dark:text-red-500 border border-rose-200 dark:border-transparent">
               <AlertTriangle className="w-4 h-4" />
             </div>
           </div>
@@ -111,32 +111,32 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
             <span
               className={`text-3xl font-bold font-mono ${
                 overdueTasks.length > 0
-                  ? 'text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.4)]'
+                  ? 'text-rose-700 dark:text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.2)]'
                   : 'text-slate-900 dark:text-white'
               }`}
             >
               {overdueTasks.length}
             </span>
-            <span className="text-xs text-slate-400">tasks overdue</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">tasks overdue</span>
           </div>
-          <p className="text-xs text-slate-400 mt-2">
+          <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 font-medium">
             {overdueTasks.length > 0 ? 'Requires immediate action' : 'All tasks on schedule!'}
           </p>
         </div>
 
         {/* Time Logged */}
-        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Logged Hours</span>
-            <div className="p-2 rounded-xl bg-sky-500/10 text-sky-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-xs">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Logged Hours</span>
+            <div className="p-2 rounded-xl bg-sky-50 dark:bg-sky-500/10 text-sky-700 dark:text-sky-400 border border-sky-200 dark:border-transparent">
               <Clock className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-bold font-mono text-slate-900 dark:text-white">
             {formatDuration(totalSecondsLogged)}
           </div>
-          <div className="text-xs text-slate-400 mt-2 flex items-center gap-1.5">
-            <TrendingUp className="w-3.5 h-3.5 text-teal-400" />
+          <div className="text-xs text-slate-600 dark:text-slate-400 mt-2 flex items-center gap-1.5 font-medium">
+            <TrendingUp className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
             <span>Tracked via built-in timer</span>
           </div>
         </div>
@@ -192,12 +192,12 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
               { label: 'In Progress', count: inProgressTasks, color: '#0D9488' },
               { label: 'Done & Closed', count: completedTasks, color: '#059669' },
             ].map((st) => (
-              <div key={st.label} className="p-3 rounded-xl bg-slate-50 dark:bg-obsidian-900/60 border border-slate-200/50 dark:border-white/[0.04]">
+              <div key={st.label} className="p-3 rounded-xl bg-slate-50 dark:bg-obsidian-900/60 border border-slate-200 dark:border-white/[0.04]">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: st.color }} />
-                  <span className="text-xs text-slate-400 truncate">{st.label}</span>
+                  <span className="text-xs text-slate-600 dark:text-slate-400 font-semibold truncate">{st.label}</span>
                 </div>
-                <div className="font-mono text-lg font-bold text-slate-800 dark:text-white">
+                <div className="font-mono text-lg font-bold text-slate-900 dark:text-white">
                   {st.count}
                 </div>
               </div>
@@ -209,12 +209,12 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
         <div className="lg:col-span-5 p-6 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <BarChart className="w-4 h-4 text-teal-400" />
+              <BarChart className="w-4 h-4 text-teal-600 dark:text-teal-400" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                 Priority Distribution
               </h3>
             </div>
-            <span className="text-xs font-mono text-slate-400">Risk Matrix</span>
+            <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold">Risk Matrix</span>
           </div>
 
           <div className="space-y-3 pt-1">
@@ -225,11 +225,11 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
               return (
                 <div key={pr} className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-medium text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                    <span className="font-semibold text-slate-800 dark:text-slate-300 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full" style={{ backgroundColor: conf.color }} />
                       {conf.label}
                     </span>
-                    <span className="font-mono text-slate-400">
+                    <span className="font-mono text-slate-600 dark:text-slate-400 font-semibold">
                       {count} ({percent}%)
                     </span>
                   </div>
@@ -250,19 +250,19 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
       <div className="p-6 rounded-2xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-white/[0.08] shadow-sm space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-teal-400" />
+            <Users className="w-4 h-4 text-teal-600 dark:text-teal-400" />
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">
               Team Member Workload & Capacity
             </h3>
           </div>
-          <span className="text-xs text-slate-400 font-mono">Real-time Task Allocation</span>
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-mono font-semibold">Real-time Task Allocation</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {memberWorkload.map((member) => (
             <div
               key={member.id}
-              className="p-4 rounded-xl bg-slate-50 dark:bg-obsidian-900/60 border border-slate-200/60 dark:border-white/[0.04] space-y-3"
+              className="p-4 rounded-xl bg-slate-50 dark:bg-obsidian-900/60 border border-slate-200 dark:border-white/[0.04] space-y-3"
             >
               <div className="flex items-center gap-3">
                 <img
@@ -274,14 +274,14 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
                   <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">
                     {member.name}
                   </h4>
-                  <p className="text-[10px] text-slate-400 truncate">{member.role}</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate font-medium">{member.role}</p>
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <div className="flex justify-between text-xs font-mono">
-                  <span className="text-slate-400">Active Workload</span>
-                  <span className="font-bold text-teal-400">{member.active} active</span>
+                <div className="flex justify-between text-xs font-mono font-medium">
+                  <span className="text-slate-600 dark:text-slate-400">Active Workload</span>
+                  <span className="font-bold text-teal-700 dark:text-teal-400">{member.active} active</span>
                 </div>
                 <div className="h-1.5 w-full bg-slate-200 dark:bg-obsidian-700 rounded-full overflow-hidden">
                   <div
@@ -289,7 +289,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ tasks })
                     style={{ width: `${member.completionRate}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-[10px] text-slate-400 font-mono">
+                <div className="flex justify-between text-[10px] text-slate-500 dark:text-slate-400 font-mono font-medium">
                   <span>{member.completed} completed</span>
                   <span>{member.total} total</span>
                 </div>

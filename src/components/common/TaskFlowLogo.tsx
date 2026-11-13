@@ -111,10 +111,10 @@ export const TaskFlowLogo: React.FC<TaskFlowLogoProps> = ({
       {showText && (
         <div className="flex flex-col">
           <div className="flex items-center gap-1.5">
-            <span className="font-extrabold tracking-tight text-white font-sans text-base">
-              Task<span className="text-teal-400">Flow</span>
+            <span className="font-extrabold tracking-tight text-slate-900 dark:text-white font-sans text-base">
+              Task<span className="text-teal-600 dark:text-teal-400">Flow</span>
             </span>
-            <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-md bg-gradient-to-r from-teal-500/20 to-emerald-500/20 text-teal-300 border border-teal-400/30">
+            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-md bg-teal-50 text-teal-700 border border-teal-300 dark:bg-gradient-to-r dark:from-teal-500/20 dark:to-emerald-500/20 dark:text-teal-300 dark:border-teal-400/30">
               PRO
             </span>
           </div>

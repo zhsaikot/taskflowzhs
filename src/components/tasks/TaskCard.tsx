@@ -38,8 +38,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd
       onClick={handleCardClick}
       className={`group relative p-3.5 rounded-2xl transition-all duration-200 cursor-pointer select-none ${
         isSelected
-          ? 'bg-teal-950/50 border-teal-500/80 ring-1 ring-teal-500 shadow-glow-brand'
-          : 'bg-white dark:bg-obsidian-800 hover:bg-slate-50 dark:hover:bg-obsidian-750 border border-slate-200 dark:border-white/[0.06] hover:border-teal-500/30 dark:hover:border-teal-500/30 shadow-sm hover:shadow-md'
+          ? 'bg-teal-50 dark:bg-teal-950/50 border-teal-500 ring-1 ring-teal-500 shadow-sm'
+          : 'bg-white dark:bg-obsidian-800 hover:bg-slate-50/90 dark:hover:bg-obsidian-750 border border-slate-200/90 dark:border-white/[0.06] hover:border-teal-500/40 dark:hover:border-teal-500/30 shadow-sm hover:shadow-md'
       }`}
     >
       {/* Top row: Checkbox, ID, Priority flag */}
@@ -55,13 +55,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd
             className={`w-4 h-4 rounded-md flex items-center justify-center border transition cursor-pointer ${
               isSelected
                 ? 'bg-teal-600 border-teal-600 text-white'
-                : 'border-slate-300 dark:border-slate-700 hover:border-teal-400 opacity-60 group-hover:opacity-100'
+                : 'border-slate-300 dark:border-slate-700 hover:border-teal-500 opacity-60 group-hover:opacity-100'
             }`}
           >
             {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
           </button>
 
-          <span className="font-mono text-[11px] font-semibold text-slate-400 dark:text-slate-400 group-hover:text-teal-400 transition">
+          <span className="font-mono text-[11px] font-semibold text-slate-500 dark:text-slate-400 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition">
             {task.id}
           </span>
         </div>
@@ -76,7 +76,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd
       </div>
 
       {/* Title */}
-      <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100 group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors line-clamp-2 leading-snug mb-2">
+      <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors line-clamp-2 leading-snug mb-2">
         {task.title}
       </h4>
 
@@ -86,7 +86,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd
           {task.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-obsidian-750 text-slate-500 dark:text-teal-300/80 border border-slate-200/50 dark:border-teal-500/20"
+              className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-obsidian-750 text-slate-700 dark:text-teal-300/80 border border-slate-200 dark:border-teal-500/20"
             >
               #{tag}
             </span>
@@ -111,7 +111,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd
 
         <div className="flex items-center gap-2.5">
           {task.comments && task.comments.length > 0 && (
-            <span className="inline-flex items-center gap-1 text-[11px] text-slate-400">
+            <span className="inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
               <MessageSquare className="w-3.5 h-3.5" />
               <span>{task.comments.length}</span>
             </span>

@@ -104,13 +104,13 @@ export const Sidebar: React.FC = () => {
             <div>
               <div className="flex items-center gap-1.5">
                 <h2 className="text-sm font-extrabold tracking-tight text-slate-900 dark:text-white truncate">
-                  Task<span className="text-teal-400">Flow</span>
+                  Task<span className="text-teal-600 dark:text-teal-400">Flow</span>
                 </h2>
-                <span className="text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-300 dark:bg-teal-500/20 dark:text-teal-300 dark:border-teal-500/30">
                   PRO
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-teal-400/90 font-medium truncate block max-w-[120px]">
+              <span className="text-[10px] font-mono text-slate-500 dark:text-teal-400/90 font-medium truncate block max-w-[120px]">
                 {workspace.name}
               </span>
             </div>
@@ -136,15 +136,15 @@ export const Sidebar: React.FC = () => {
             }}
             className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition cursor-pointer ${
               activeSpaceId === 'all'
-                ? 'bg-teal-500/10 dark:bg-teal-500/15 text-teal-600 dark:text-teal-400 font-semibold border border-teal-500/20'
+                ? 'bg-teal-50 text-teal-800 font-bold border border-teal-200 dark:bg-teal-500/15 dark:text-teal-400 dark:border-teal-500/20'
                 : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-obsidian-800/60'
             }`}
           >
             <div className="flex items-center gap-2.5">
-              <Layers className="w-4 h-4 text-teal-500" />
-              <span>All Workspaces</span>
+              <Layers className="w-4 h-4 text-teal-600 dark:text-teal-500" />
+              <span className="font-semibold">All Workspaces</span>
             </div>
-            <span className="font-mono text-[11px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-obsidian-800 text-slate-500 dark:text-teal-300 font-semibold">
+            <span className="font-mono text-[11px] px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-700 dark:bg-obsidian-800 dark:text-teal-300 font-bold">
               {tasks.length}
             </span>
           </button>
@@ -152,9 +152,9 @@ export const Sidebar: React.FC = () => {
 
         {/* SPACES & FOLDERS & LISTS HIERARCHY */}
         <div className="px-3 py-2">
-          <div className="flex items-center justify-between px-2 mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          <div className="flex items-center justify-between px-2 mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500">
             <span>Spaces</span>
-            <span className="text-[10px] lowercase font-mono">ClickUp 4-tier</span>
+            <span className="text-[10px] lowercase font-mono">clickup 4-tier</span>
           </div>
 
           <div className="space-y-3">
@@ -173,13 +173,13 @@ export const Sidebar: React.FC = () => {
                     }}
                     className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer text-left ${
                       isSpaceActive
-                        ? 'bg-slate-100 dark:bg-obsidian-800 text-slate-900 dark:text-white border-l-2 border-teal-400'
-                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-obsidian-800/40'
+                        ? 'bg-teal-50 text-teal-900 border-l-2 border-teal-600 dark:bg-obsidian-800 dark:text-white dark:border-teal-400'
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-obsidian-800/40'
                     }`}
                   >
                     <div className="flex items-center gap-2 truncate">
                       <div
-                        className="w-5 h-5 rounded-md flex items-center justify-center text-white"
+                        className="w-5 h-5 rounded-md flex items-center justify-center text-white shadow-xs"
                         style={{ backgroundColor: space.color }}
                       >
                         <Icon className="w-3 h-3" />
@@ -189,7 +189,7 @@ export const Sidebar: React.FC = () => {
                   </button>
 
                   {/* Folders & Lists */}
-                  <div className="pl-4 space-y-1 border-l border-slate-200/60 dark:border-white/[0.04] ml-3">
+                  <div className="pl-4 space-y-1 border-l border-slate-200 dark:border-white/[0.04] ml-3">
                     {/* Folders */}
                     {space.folders.map((folder) => {
                       const isFolderOpen = Boolean(openFolders[folder.id]);
@@ -198,10 +198,10 @@ export const Sidebar: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => toggleFolder(folder.id)}
-                            className="w-full flex items-center gap-1.5 px-2 py-1 rounded text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                            className="w-full flex items-center gap-1.5 px-2 py-1 rounded text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
                           >
                             {isFolderOpen ? (
-                              <FolderOpen className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+                              <FolderOpen className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 flex-shrink-0" />
                             ) : (
                               <Folder className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
                             )}
@@ -223,8 +223,8 @@ export const Sidebar: React.FC = () => {
                                     }}
                                     className={`w-full flex items-center gap-2 px-2 py-1 rounded-md text-[11px] transition cursor-pointer ${
                                       isListActive
-                                        ? 'bg-teal-500/10 dark:bg-teal-500/20 text-teal-600 dark:text-teal-300 font-semibold'
-                                        : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                                        ? 'bg-teal-50 text-teal-800 font-bold border-l-2 border-teal-600 dark:bg-teal-500/20 dark:text-teal-300 dark:border-teal-400'
+                                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
                                     }`}
                                   >
                                     <ListIcon className="w-3 h-3 text-slate-400" />
@@ -251,8 +251,8 @@ export const Sidebar: React.FC = () => {
                           }}
                           className={`w-full flex items-center gap-2 px-2 py-1 rounded-md text-[11px] transition cursor-pointer ${
                             isListActive
-                              ? 'bg-teal-500/10 dark:bg-teal-500/20 text-teal-600 dark:text-teal-300 font-semibold'
-                              : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                              ? 'bg-teal-50 text-teal-800 font-bold border-l-2 border-teal-600 dark:bg-teal-500/20 dark:text-teal-300 dark:border-teal-400'
+                              : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
                           }`}
                         >
                           <ListIcon className="w-3 h-3 text-slate-400" />
@@ -269,10 +269,10 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* Bottom Profile & Workload Pill - Click to Edit */}
-      <div className="p-3 border-t border-slate-200 dark:border-white/[0.06] bg-slate-50/50 dark:bg-obsidian-950/80">
+      <div className="p-3 border-t border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-obsidian-950/80">
         <div
           onClick={() => setIsProfileModalOpen(true)}
-          className="group flex items-center justify-between p-2 rounded-xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-white/[0.05] hover:border-teal-500/40 shadow-xs cursor-pointer transition"
+          className="group flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-white/[0.05] hover:border-teal-500/50 shadow-sm cursor-pointer transition"
           title="Click to edit profile & display picture"
         >
           <div className="flex items-center gap-2.5 min-w-0">
@@ -280,22 +280,22 @@ export const Sidebar: React.FC = () => {
               <img
                 src={currentUser.avatar}
                 alt={currentUser.name}
-                className="w-8 h-8 rounded-full object-cover ring-1 ring-teal-500/40 group-hover:ring-teal-400 transition"
+                className="w-8 h-8 rounded-full object-cover ring-2 ring-teal-500/40 group-hover:ring-teal-500 transition"
               />
-              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-obsidian-900" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-obsidian-900" />
             </div>
             <div className="truncate">
               <div className="flex items-center gap-1">
-                <p className="text-xs font-bold text-slate-900 dark:text-white truncate group-hover:text-teal-300 transition">
+                <p className="text-xs font-bold text-slate-900 dark:text-white truncate group-hover:text-teal-600 dark:group-hover:text-teal-300 transition">
                   {currentUser.name}
                 </p>
-                <UserCog className="w-3 h-3 text-slate-400 group-hover:text-teal-400 transition opacity-0 group-hover:opacity-100 flex-shrink-0" />
+                <UserCog className="w-3 h-3 text-slate-400 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition opacity-0 group-hover:opacity-100 flex-shrink-0" />
               </div>
-              <p className="text-[10px] text-slate-400 truncate">{currentUser.role}</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate font-medium">{currentUser.role}</p>
             </div>
           </div>
           <span
-            className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400 font-bold border border-teal-500/20"
+            className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 font-bold border border-teal-200 dark:bg-teal-500/10 dark:text-teal-400 dark:border-teal-500/20"
             title={`${myTaskCount} active tasks assigned to you`}
           >
             {myTaskCount}

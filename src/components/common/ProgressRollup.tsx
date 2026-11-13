@@ -19,12 +19,12 @@ export const ProgressRollup: React.FC<ProgressRollupProps> = ({ task, compact = 
       <div
         className={`inline-flex items-center gap-1.5 text-xs font-mono px-2 py-0.5 rounded ${
           allDone
-            ? 'bg-emerald-500/15 text-emerald-400 font-semibold border border-emerald-500/30'
-            : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300'
+            ? 'bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 font-semibold border border-emerald-300 dark:border-emerald-500/30'
+            : 'bg-slate-100 dark:bg-obsidian-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/5'
         }`}
         title={`${completed} of ${total} subtasks completed (${percentage}%)`}
       >
-        <CheckSquare className={`w-3.5 h-3.5 ${allDone ? 'text-emerald-400' : 'text-teal-400'}`} />
+        <CheckSquare className={`w-3.5 h-3.5 ${allDone ? 'text-emerald-600 dark:text-emerald-400' : 'text-teal-600 dark:text-teal-400'}`} />
         <span>
           {completed}/{total}
         </span>
@@ -35,15 +35,15 @@ export const ProgressRollup: React.FC<ProgressRollupProps> = ({ task, compact = 
   return (
     <div className="w-full space-y-1.5" title={`${completed} of ${total} subtasks completed`}>
       <div className="flex items-center justify-between text-xs font-mono">
-        <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
-          <CheckSquare className="w-3.5 h-3.5 text-teal-400" />
+        <span className="flex items-center gap-1 text-slate-600 dark:text-slate-400 font-medium">
+          <CheckSquare className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
           Subtasks ({completed}/{total})
         </span>
         <span
           className={`font-semibold ${
             allDone
-              ? 'text-emerald-400'
-              : 'text-teal-400'
+              ? 'text-emerald-700 dark:text-emerald-400'
+              : 'text-teal-700 dark:text-teal-400'
           }`}
         >
           {percentage}%

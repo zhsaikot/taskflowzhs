@@ -32,13 +32,13 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ tasks }) => {
   return (
     <div className="w-full bg-white dark:bg-obsidian-900 rounded-2xl border border-slate-200 dark:border-white/[0.06] overflow-hidden shadow-sm">
       {/* Calendar Header */}
-      <div className="p-4 border-b border-slate-200 dark:border-white/[0.06] flex items-center justify-between bg-slate-50/50 dark:bg-obsidian-950/80">
+      <div className="p-4 border-b border-slate-200 dark:border-white/[0.06] flex items-center justify-between bg-slate-50 dark:bg-obsidian-950/80">
         <div className="flex items-center gap-2">
-          <CalendarIcon className="w-4 h-4 text-teal-400" />
-          <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">
+          <CalendarIcon className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
             {currentMonth}
           </h3>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/15 text-teal-400 font-mono border border-teal-500/30">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-teal-50 dark:bg-teal-500/15 text-teal-700 dark:text-teal-400 font-mono font-semibold border border-teal-200 dark:border-teal-500/30">
             Sprint Phase
           </span>
         </div>
@@ -46,13 +46,13 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ tasks }) => {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="p-1 rounded-lg border border-slate-200 dark:border-obsidian-750 text-slate-400 hover:text-white"
+            className="p-1.5 rounded-lg border border-slate-200 dark:border-obsidian-750 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-obsidian-800 transition"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             type="button"
-            className="p-1 rounded-lg border border-slate-200 dark:border-obsidian-750 text-slate-400 hover:text-white"
+            className="p-1.5 rounded-lg border border-slate-200 dark:border-obsidian-750 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-obsidian-800 transition"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -60,7 +60,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ tasks }) => {
       </div>
 
       {/* Weekday Names */}
-      <div className="grid grid-cols-7 border-b border-slate-200 dark:border-white/[0.06] bg-slate-100/50 dark:bg-obsidian-800/60 text-center text-xs font-semibold text-slate-400 py-2.5">
+      <div className="grid grid-cols-7 border-b border-slate-200 dark:border-white/[0.06] bg-slate-100 dark:bg-obsidian-800/60 text-center text-xs font-bold text-slate-700 dark:text-slate-400 py-2.5">
         <span>Sun</span>
         <span>Mon</span>
         <span>Tue</span>
@@ -77,7 +77,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ tasks }) => {
             return (
               <div
                 key={`pad-${idx}`}
-                className="min-h-[105px] bg-slate-50/30 dark:bg-obsidian-950/40 p-2 text-slate-400/40 select-none"
+                className="min-h-[105px] bg-slate-50/50 dark:bg-obsidian-950/40 p-2 text-slate-400/40 select-none"
               />
             );
           }
@@ -88,22 +88,22 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ tasks }) => {
           return (
             <div
               key={`day-${day}`}
-              className={`min-h-[110px] p-2 flex flex-col justify-between transition hover:bg-slate-50/50 dark:hover:bg-obsidian-800/40 ${
+              className={`min-h-[110px] p-2 flex flex-col justify-between transition hover:bg-slate-50 dark:hover:bg-obsidian-800/40 ${
                 isToday ? 'bg-teal-500/[0.06] ring-1 ring-inset ring-teal-500/30' : ''
               }`}
             >
               <div className="flex items-center justify-between mb-1.5">
                 <span
-                  className={`w-6 h-6 rounded-full flex items-center justify-center font-mono text-xs font-semibold ${
+                  className={`w-6 h-6 rounded-full flex items-center justify-center font-mono text-xs font-bold ${
                     isToday
                       ? 'bg-teal-600 text-white shadow-glow-brand'
-                      : 'text-slate-700 dark:text-slate-300'
+                      : 'text-slate-900 dark:text-slate-300'
                   }`}
                 >
                   {day}
                 </span>
                 {dayTasks.length > 0 && (
-                  <span className="text-[10px] text-slate-400 font-mono">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono font-medium">
                     {dayTasks.length} task{dayTasks.length > 1 ? 's' : ''}
                   </span>
                 )}
@@ -119,12 +119,12 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ tasks }) => {
                     <div
                       key={task.id}
                       onClick={() => setSelectedTaskId(task.id)}
-                      className="group/item p-1 px-1.5 rounded-lg border border-slate-200/60 dark:border-white/[0.06] bg-white dark:bg-obsidian-800 shadow-xs hover:border-teal-500/50 cursor-pointer transition flex items-center justify-between"
+                      className="group/item p-1 px-1.5 rounded-lg border border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-obsidian-800 shadow-xs hover:border-teal-500/50 hover:bg-white cursor-pointer transition flex items-center justify-between"
                       title={`${task.id}: ${task.title}`}
                     >
                       <div className="flex items-center gap-1.5 truncate">
                         <span className={`w-1.5 h-1.5 rounded-full ${config.dotClass} flex-shrink-0`} />
-                        <span className="font-medium text-[11px] truncate text-slate-800 dark:text-slate-200 group-hover/item:text-teal-300">
+                        <span className="font-semibold text-[11px] truncate text-slate-900 dark:text-slate-200 group-hover/item:text-teal-700 dark:group-hover/item:text-teal-300">
                           {task.title}
                         </span>
                       </div>

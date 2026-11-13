@@ -41,7 +41,7 @@ export const ExpiryBadge: React.FC<ExpiryBadgeProps> = ({
             setIsEditing(false);
           }
         }}
-        className="text-xs bg-slate-100 dark:bg-slate-800 border border-indigo-500 rounded px-1.5 py-0.5 text-slate-800 dark:text-slate-200 outline-none"
+        className="text-xs bg-white dark:bg-slate-800 border border-teal-500 rounded px-1.5 py-0.5 text-slate-900 dark:text-slate-200 outline-none shadow-sm"
       />
     );
   }
@@ -54,7 +54,7 @@ export const ExpiryBadge: React.FC<ExpiryBadgeProps> = ({
           e.stopPropagation();
           setIsEditing(true);
         }}
-        className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-indigo-400 transition-colors"
+        className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
       >
         <Calendar className="w-3.5 h-3.5" />
         <span>Set due date</span>

@@ -45,8 +45,8 @@ export const TaskRow: React.FC<TaskRowProps> = ({ task }) => {
       onClick={handleRowClick}
       className={`group flex items-center gap-3 px-4 py-2.5 border-b transition-colors cursor-pointer text-xs ${
         isSelected
-          ? 'bg-teal-950/40 dark:bg-teal-950/50 border-teal-500/40'
-          : 'bg-white dark:bg-obsidian-900/60 hover:bg-slate-50/80 dark:hover:bg-obsidian-800/80 border-slate-200/80 dark:border-white/[0.05]'
+          ? 'bg-teal-50 dark:bg-teal-950/50 border-teal-500/40'
+          : 'bg-white dark:bg-obsidian-900/60 hover:bg-slate-50 dark:hover:bg-obsidian-800/80 border-slate-200/90 dark:border-white/[0.05]'
       }`}
     >
       {/* Checkbox */}
@@ -59,14 +59,14 @@ export const TaskRow: React.FC<TaskRowProps> = ({ task }) => {
         className={`w-4 h-4 rounded flex items-center justify-center border transition cursor-pointer flex-shrink-0 ${
           isSelected
             ? 'bg-teal-600 border-teal-600 text-white'
-            : 'border-slate-300 dark:border-slate-700 hover:border-teal-400 opacity-60 group-hover:opacity-100'
+            : 'border-slate-300 dark:border-slate-700 hover:border-teal-500 opacity-60 group-hover:opacity-100'
         }`}
       >
         {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
       </button>
 
       {/* Task ID */}
-      <span className="font-mono text-[11px] font-semibold text-slate-400 dark:text-slate-400 w-18 flex-shrink-0 group-hover:text-teal-400 transition">
+      <span className="font-mono text-[11px] font-semibold text-slate-500 dark:text-slate-400 w-18 flex-shrink-0 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition">
         {task.id}
       </span>
 
@@ -86,7 +86,7 @@ export const TaskRow: React.FC<TaskRowProps> = ({ task }) => {
                 setIsEditingTitle(false);
               }
             }}
-            className="w-full text-xs font-medium text-slate-900 dark:text-white bg-slate-100 dark:bg-obsidian-800 rounded px-1.5 py-0.5 outline-none ring-1 ring-teal-500"
+            className="w-full text-xs font-semibold text-slate-900 dark:text-white bg-slate-100 dark:bg-obsidian-800 rounded px-1.5 py-0.5 outline-none ring-1 ring-teal-500"
           />
         ) : (
           <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export const TaskRow: React.FC<TaskRowProps> = ({ task }) => {
               className={`font-medium truncate ${
                 task.status === 'closed'
                   ? 'line-through text-slate-400 dark:text-slate-500'
-                  : 'text-slate-800 dark:text-slate-200 group-hover:text-teal-600 dark:group-hover:text-teal-300'
+                  : 'text-slate-900 dark:text-slate-200 group-hover:text-teal-700 dark:group-hover:text-teal-300'
               }`}
             >
               {task.title}

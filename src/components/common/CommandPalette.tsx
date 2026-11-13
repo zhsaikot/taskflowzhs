@@ -158,13 +158,13 @@ export const CommandPalette: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-150">
       <div
-        className="w-full max-w-2xl rounded-2xl glass-dropdown shadow-2xl border border-teal-500/20 overflow-hidden flex flex-col max-h-[80vh] bg-obsidian-900"
+        className="w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-200 dark:border-teal-500/20 overflow-hidden flex flex-col max-h-[80vh] bg-white dark:bg-obsidian-900"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Search header */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-obsidian-750 bg-obsidian-950/80">
-          <Search className="w-5 h-5 text-teal-400" />
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-200 dark:border-obsidian-750 bg-slate-50 dark:bg-obsidian-950/80">
+          <Search className="w-5 h-5 text-teal-600 dark:text-teal-400" />
           <input
             ref={inputRef}
             type="text"
@@ -174,12 +174,12 @@ export const CommandPalette: React.FC = () => {
               setSelectedIndex(0);
             }}
             placeholder="Type a command or search tasks (e.g. TSK-1042, Dark Mode, Kanban)..."
-            className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-500 outline-none"
+            className="w-full bg-transparent text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 font-medium outline-none"
           />
           <button
             type="button"
             onClick={() => setIsCommandPaletteOpen(false)}
-            className="p-1 text-slate-500 hover:text-slate-300 rounded cursor-pointer"
+            className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 rounded cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -190,7 +190,7 @@ export const CommandPalette: React.FC = () => {
           {/* Tasks Group */}
           {filteredTasks.length > 0 && (
             <div>
-              <div className="px-3 py-1 text-[11px] font-semibold text-teal-400/80 uppercase tracking-wider">
+              <div className="px-3 py-1 text-[11px] font-bold text-teal-700 dark:text-teal-400/80 uppercase tracking-wider">
                 Tasks
               </div>
               <div className="space-y-1">
@@ -206,15 +206,15 @@ export const CommandPalette: React.FC = () => {
                       onMouseEnter={() => setSelectedIndex(idx)}
                       className={`flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer transition ${
                         isSelected
-                          ? 'bg-teal-500/20 text-white border border-teal-500/40 shadow-glow-brand'
-                          : 'text-slate-300 hover:bg-obsidian-800'
+                          ? 'bg-teal-50 dark:bg-teal-500/20 text-teal-900 dark:text-white border border-teal-300 dark:border-teal-500/40 shadow-xs'
+                          : 'text-slate-800 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-obsidian-800'
                       }`}
                     >
                       <div className="flex items-center gap-2.5 truncate">
-                        <span className="font-mono text-xs text-teal-400 font-semibold">
+                        <span className="font-mono text-xs text-teal-700 dark:text-teal-400 font-bold">
                           {task.id}
                         </span>
-                        <span className="text-sm font-medium truncate">{task.title}</span>
+                        <span className="text-sm font-semibold truncate">{task.title}</span>
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <PriorityBadge priority={task.priority} size="sm" />
@@ -230,7 +230,7 @@ export const CommandPalette: React.FC = () => {
           {/* Quick Actions Group */}
           {filteredActions.length > 0 && (
             <div>
-              <div className="px-3 py-1 text-[11px] font-semibold text-teal-400/80 uppercase tracking-wider">
+              <div className="px-3 py-1 text-[11px] font-bold text-teal-700 dark:text-teal-400/80 uppercase tracking-wider">
                 Actions & Navigation
               </div>
               <div className="space-y-1">
@@ -248,15 +248,15 @@ export const CommandPalette: React.FC = () => {
                       onMouseEnter={() => setSelectedIndex(globalIdx)}
                       className={`flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer transition ${
                         isSelected
-                          ? 'bg-teal-500/20 text-white border border-teal-500/40 shadow-glow-brand'
-                          : 'text-slate-300 hover:bg-obsidian-800'
+                          ? 'bg-teal-50 dark:bg-teal-500/20 text-teal-900 dark:text-white border border-teal-300 dark:border-teal-500/40 shadow-xs font-semibold'
+                          : 'text-slate-800 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-obsidian-800 font-medium'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <Icon className="w-4 h-4 text-teal-400" />
-                        <span className="text-sm font-medium">{action.label}</span>
+                        <Icon className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                        <span className="text-sm">{action.label}</span>
                       </div>
-                      <span className="text-[11px] text-teal-400/60 font-mono">Jump</span>
+                      <span className="text-[11px] text-teal-700 dark:text-teal-400/60 font-mono font-bold">Jump</span>
                     </div>
                   );
                 })}
@@ -265,20 +265,20 @@ export const CommandPalette: React.FC = () => {
           )}
 
           {totalItems === 0 && (
-            <div className="py-12 text-center text-slate-500 text-sm">
+            <div className="py-12 text-center text-slate-500 text-sm font-medium">
               No tasks or commands matching &ldquo;{query}&rdquo;
             </div>
           )}
         </div>
 
         {/* Footer info */}
-        <div className="px-4 py-2 border-t border-obsidian-750 bg-obsidian-950/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+        <div className="px-4 py-2 border-t border-slate-200 dark:border-obsidian-750 bg-slate-50 dark:bg-obsidian-950/80 flex items-center justify-between text-[11px] text-slate-500 font-mono font-medium">
           <div className="flex items-center gap-3">
             <span>↑↓ Navigate</span>
             <span>↵ Select</span>
             <span>Esc Close</span>
           </div>
-          <span className="text-teal-400/70">Tip: Press Cmd/Ctrl + K anytime</span>
+          <span className="text-teal-700 dark:text-teal-400/70 font-semibold">Tip: Press Cmd/Ctrl + K anytime</span>
         </div>
       </div>
     </div>

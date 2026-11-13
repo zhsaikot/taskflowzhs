@@ -66,8 +66,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       </button>
 
       {isOpen && canClick && (
-        <div className="absolute left-0 z-50 mt-1.5 w-44 rounded-xl glass-dropdown shadow-2xl p-1.5 ring-1 ring-black/10 focus:outline-none animate-in fade-in zoom-in-95 duration-100 bg-obsidian-900 border border-teal-500/20">
-          <div className="px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+        <div className="absolute left-0 z-50 mt-1.5 w-44 rounded-xl shadow-2xl p-1.5 ring-1 ring-black/10 focus:outline-none animate-in fade-in zoom-in-95 duration-100 bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-teal-500/20">
+          <div className="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Change Status
           </div>
           {(Object.keys(STATUS_CONFIG) as TaskStatus[]).map((key) => {
@@ -84,15 +84,15 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
                 }}
                 className={`w-full flex items-center justify-between px-2.5 py-1.5 text-xs rounded-lg transition-colors cursor-pointer text-left ${
                   isSelected
-                    ? 'bg-teal-500/20 text-white font-medium border border-teal-500/30'
-                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-obsidian-800'
+                    ? 'bg-teal-50 dark:bg-teal-500/20 text-teal-800 dark:text-teal-200 font-semibold border border-teal-200 dark:border-teal-500/30'
+                    : 'text-slate-800 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-obsidian-800'
                 }`}
               >
                 <div className="flex items-center gap-2">
                   <span className={`w-2.5 h-2.5 rounded-full ${config.dotClass}`} />
-                  <span>{config.label}</span>
+                  <span className="font-medium">{config.label}</span>
                 </div>
-                {isSelected && <Check className="w-3.5 h-3.5 text-teal-400" />}
+                {isSelected && <Check className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />}
               </button>
             );
           })}

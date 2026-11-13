@@ -53,11 +53,11 @@ export const Header: React.FC = () => {
         {/* Search & Command Palette trigger */}
         <div
           onClick={() => setIsCommandPaletteOpen(true)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-obsidian-800/90 border border-slate-200 dark:border-white/[0.06] text-slate-400 hover:text-slate-200 hover:border-teal-500/50 transition cursor-pointer max-w-sm w-full"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-obsidian-800/90 border border-slate-200 dark:border-white/[0.06] text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 hover:border-teal-500/50 transition cursor-pointer max-w-sm w-full shadow-xs"
         >
-          <Search className="w-4 h-4 text-teal-400/80" />
-          <span className="text-xs flex-1 truncate">Search tasks, tags, or jump (Cmd+K)...</span>
-          <kbd className="hidden sm:inline-block font-mono text-[10px] bg-slate-200 dark:bg-obsidian-700 px-1.5 py-0.5 rounded text-slate-500 dark:text-teal-400/90 font-semibold border border-teal-500/20">
+          <Search className="w-4 h-4 text-teal-600 dark:text-teal-400/80" />
+          <span className="text-xs flex-1 truncate font-medium">Search tasks, tags, or jump (Cmd+K)...</span>
+          <kbd className="hidden sm:inline-block font-mono text-[10px] bg-white dark:bg-obsidian-700 px-1.5 py-0.5 rounded text-slate-600 dark:text-teal-400/90 font-semibold border border-slate-200 dark:border-teal-500/20 shadow-xs">
             ⌘K
           </kbd>
         </div>
@@ -147,10 +147,10 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setFilterState((prev) => ({ ...prev, quickFilter: 'all' }))}
-            className={`px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer border ${
               filterState.quickFilter === 'all'
-                ? 'bg-slate-900 text-white dark:bg-teal-500/20 dark:text-teal-300 dark:border dark:border-teal-500/40 font-semibold'
-                : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-obsidian-750'
+                ? 'bg-slate-900 text-white border-slate-900 shadow-xs dark:bg-teal-500/20 dark:text-teal-300 dark:border-teal-500/40'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 dark:bg-obsidian-800 dark:text-slate-400 dark:border-transparent dark:hover:bg-obsidian-750'
             }`}
           >
             All Tasks
@@ -164,10 +164,10 @@ export const Header: React.FC = () => {
                 quickFilter: prev.quickFilter === 'my_tasks' ? 'all' : 'my_tasks',
               }))
             }
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer border ${
               filterState.quickFilter === 'my_tasks'
-                ? 'bg-teal-700 text-white font-semibold shadow-glow-brand'
-                : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-obsidian-750'
+                ? 'bg-teal-600 text-white border-teal-600 shadow-xs dark:bg-teal-700 dark:border-teal-600'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 dark:bg-obsidian-800 dark:text-slate-400 dark:border-transparent dark:hover:bg-obsidian-750'
             }`}
           >
             <UserCheck className="w-3.5 h-3.5" />
@@ -182,10 +182,10 @@ export const Header: React.FC = () => {
                 quickFilter: prev.quickFilter === 'overdue' ? 'all' : 'overdue',
               }))
             }
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer border ${
               filterState.quickFilter === 'overdue'
-                ? 'bg-red-600 text-white font-semibold shadow-glow-overdue'
-                : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-obsidian-750'
+                ? 'bg-red-600 text-white border-red-600 shadow-xs dark:bg-red-600 dark:border-red-500'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 dark:bg-obsidian-800 dark:text-slate-400 dark:border-transparent dark:hover:bg-obsidian-750'
             }`}
           >
             <AlertCircle className="w-3.5 h-3.5 text-red-500" />
@@ -205,10 +205,10 @@ export const Header: React.FC = () => {
                 quickFilter: prev.quickFilter === 'high_priority' ? 'all' : 'high_priority',
               }))
             }
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-medium transition cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer border ${
               filterState.quickFilter === 'high_priority'
-                ? 'bg-orange-600 text-white font-semibold'
-                : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-obsidian-750'
+                ? 'bg-orange-600 text-white border-orange-600 shadow-xs dark:bg-orange-600 dark:border-orange-500'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 dark:bg-obsidian-800 dark:text-slate-400 dark:border-transparent dark:hover:bg-obsidian-750'
             }`}
           >
             <Flame className="w-3.5 h-3.5 text-orange-500" />
