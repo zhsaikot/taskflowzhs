@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTasks } from '../../context/TaskContext';
+import { TaskFlowLogo } from '../common/TaskFlowLogo';
 import {
   Code2,
   Megaphone,
@@ -60,10 +61,10 @@ export const Sidebar: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsCollapsed(false)}
-            className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-700 text-white flex items-center justify-center font-bold text-lg shadow-glow-brand cursor-pointer"
+            className="cursor-pointer transition-transform hover:scale-105"
             title="Expand Sidebar"
           >
-            T
+            <TaskFlowLogo size="md" />
           </button>
           <button
             type="button"
@@ -99,18 +100,18 @@ export const Sidebar: React.FC = () => {
       <div>
         <div className="p-4 border-b border-slate-200 dark:border-white/[0.06] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-700 text-white flex items-center justify-center font-bold text-base shadow-glow-brand">
-              TF
-            </div>
+            <TaskFlowLogo size="md" />
             <div>
               <div className="flex items-center gap-1.5">
-                <h2 className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[120px]">
-                  {workspace.name}
+                <h2 className="text-sm font-extrabold tracking-tight text-slate-900 dark:text-white truncate">
+                  Task<span className="text-teal-400">Flow</span>
                 </h2>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
+                <span className="text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                  PRO
+                </span>
               </div>
-              <span className="text-[10px] font-mono text-teal-400 font-semibold">
-                {workspace.plan}
+              <span className="text-[10px] font-mono text-teal-400/90 font-medium truncate block max-w-[120px]">
+                {workspace.name}
               </span>
             </div>
           </div>
