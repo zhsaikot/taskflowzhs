@@ -9,7 +9,6 @@ import {
   User,
   Briefcase,
   Mail,
-  Sparkles,
 } from 'lucide-react';
 
 const PRESET_AVATARS = [
@@ -55,15 +54,22 @@ export const EditProfileModal: React.FC = () => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 5 * 1024 * 1024) {
-      alert('Image size should be less than 5MB');
+    // Security & sanity checks: Validate file type and size
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      alert('Security Alert: Only valid image files (JPEG, PNG, WebP, GIF) are permitted.');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert('Image size should be less than 2MB to ensure fast storage and performance.');
       return;
     }
 
     const reader = new FileReader();
     reader.onload = (uploadEvent) => {
       const result = uploadEvent.target?.result as string;
-      if (result) {
+      if (result && result.startsWith('data:image/')) {
         setAvatar(result);
       }
     };
@@ -72,10 +78,21 @@ export const EditProfileModal: React.FC = () => {
 
   const handleApplyCustomUrl = (e: React.FormEvent) => {
     e.preventDefault();
-    if (customUrl.trim()) {
-      setAvatar(customUrl.trim());
-      setShowUrlInput(false);
+    const trimmed = customUrl.trim();
+    if (!trimmed) return;
+
+    // Security check: Only allow safe HTTP/HTTPS or data:image/ protocols
+    const isSafeUrl =
+      /^(https?:\/\/)/i.test(trimmed) ||
+      /^data:image\/(png|jpeg|webp|gif);base64,/i.test(trimmed);
+
+    if (!isSafeUrl) {
+      alert('Security Alert: Please enter a valid, secure image URL starting with https://');
+      return;
     }
+
+    setAvatar(trimmed);
+    setShowUrlInput(false);
   };
 
   const handleSave = (e: React.FormEvent) => {
